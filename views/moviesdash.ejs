@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Movie App</title>
+  <style>
+    /* Add your CSS styles here */
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px;
+      display: inline-block;
+      width: 300px;
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .card h2 {
+      margin-top: 10px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .card p {
+      margin-top: 5px;
+      font-size: 16px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+    <h1>Movies</h1>
+    <% movies.forEach(movie => { %>
+      <div class="card">
+        
+  <form method="post" action="/movie/<%= movie.movie_id %>" >
+
+      <h2><%= movie.movie_name %></h2>
+      <p><strong>Movie ID:</strong> <%= movie.movie_id %></p>
+      <p><strong>Rating:</strong> <%= movie.movie_rating %></p>
+      <p><strong>Dimensions:</strong> <%= movie.movie_dimensions %></p>
+      <p><strong>Genre:</strong> <%= movie.genre %></p>
+      <p><strong>Status:</strong> <%= movie.status %></p>
+      <p><strong>Language:</strong> <%= movie.language %></p>
+      <p><strong>Description:</strong> <%= movie.description %></p>
+      <button type="submit" >    Booknow
+  </button>
+    </div>
+
+
+</form>
+    <% }) %>
+  </body>d
+  
+</html>

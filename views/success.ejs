@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>booking success</title>
+</head>
+<body>
+    <div id="selectedSeats"></div>
+    <div id="totalSeats"></div>
+
+    <script>
+        // Get selected seats from localStorage
+        const seats = localStorage.getItem("selectedSeats");
+       
+
+        // Display selected seats
+        const selectedSeatsDiv = document.getElementById("selectedSeats");
+        selectedSeatsDiv.innerText = `Selected seats: ${seats}`;
+
+        // Calculate and display total number of seats
+        const totalSeatsDiv = document.getElementById("totalSeats");
+        const seatsArray = seats.split(","); // Convert string to array
+        const totalSeats = seatsArray.length;
+        totalSeatsDiv.innerText = `Total seats: ${totalSeats}`;
+
+  // Pass selected seats array to script.js
+  const script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "/js/script.js";
+  script.dataset.seats = JSON.stringify(seatsArray);
+  script.dataset.totalSeats = totalSeats;
+  document.body.appendChild(script);
+        console.log(script);
+    </script>
+</body>
+</html>
