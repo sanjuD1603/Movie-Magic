@@ -305,7 +305,7 @@ app.post('/seats', (req, res) => {
     if (results.length > 0) {
       const existingBooking = results[0];
 
-      const updateSql = `UPDATE shows selected_seats = JSON_MERGE_PRESERVE(selected_seats, '${JSON.stringify(booking.seats)}') WHERE screen_id = ${existingBooking.screen_id}`;
+      const updateSql = `UPDATE shows SET selected_seats = JSON_MERGE_PRESERVE(selected_seats, '${JSON.stringify(booking.seats)}') WHERE screen_id = ${existingBooking.screen_id}`;
 
       con.query(updateSql, function (error, results, fields) {
         if (error) throw error;
@@ -348,7 +348,25 @@ app.post('/seats', (req, res) => {
 });
 
 
+app.get('/getseats' , function(req,res){
 
+  const screen_id = req.header('screen_id')
+  console.log(screen_id)
+
+  const sqlqueryseats =  `SELECT selected_seats FROM shows WHERE screen_id = ${screen_id}`;
+  con.query(sqlqueryseats, function (error, results, fields) {
+    if (error) throw error;
+    console.log(results)
+
+    if(results){
+      res.status(200).send(results); 
+
+    }
+  });
+  
+
+
+} )
 
 
 app.post('/shows/:screen_id', function(req, res) {
@@ -385,8 +403,6 @@ res.render("seats");
      
      });
  
- 
-
 
 app.listen(3000,function(){
     console.log('Server started on port 3000');

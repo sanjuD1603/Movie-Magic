@@ -58,21 +58,11 @@
                 <div class="seat"></div>
                 <div class="seat"></div>
                 <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat occupied"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-            </div>
-            <div class="row">
+                <div class="seat "></div>
                 <div class="seat"></div>
                 <div class="seat"></div>
                 <div class="seat"></div>
                 <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat occupied"></div>
             </div>
             <div class="row">
                 <div class="seat"></div>
@@ -88,8 +78,18 @@
                 <div class="seat"></div>
                 <div class="seat"></div>
                 <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+            </div>
+            <div class="row">
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
                 <div class="seat"></div>
                 <div class="seat"></div>
                 <div class="seat"></div>
@@ -110,9 +110,9 @@
                 <div class="seat"></div>
                 <div class="seat"></div>
                 <div class="seat"></div>
-                <div class="seat occupied"></div>
-                <div class="seat occupied"></div>
-                <div class="seat occupied"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
+                <div class="seat"></div>
                 <div class="seat"></div>
             </div>
             <h5 class='subtitle'>GOLD - ₹650</h5>
@@ -171,6 +171,39 @@ console.log(screenid);
       console.error(error);
     });
 });
+    </script>
+
+    <script> 
+    
+    function loadSeatsData() {
+  const seats = document.querySelectorAll(".row .seat:not(.occupied)");
+  const screenid2 = window.location.pathname.split('/')[2];
+
+  fetch("/getseats", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "screen_id" : screenid2
+    }
+  })
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+
+    const selectedSeats = JSON.parse(data[0].selected_seats);
+    seats.forEach(function(seat, index) {
+      if (selectedSeats.indexOf(index) > -1) {
+        seat.classList.add("occupied");
+      }
+    });
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+}
+
+
+window.onload = loadSeatsData;
     </script>
 
  

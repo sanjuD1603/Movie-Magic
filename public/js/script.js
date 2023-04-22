@@ -9,6 +9,9 @@ const movieSelect = document.getElementById("movie");
 
 
 populateUI();
+
+
+
 //stores the ticket price in the form of numbers (we use +beforemovieSelect)
 let ticketPrice = +movieSelect.value;
 
@@ -53,7 +56,34 @@ function populateUI() {
   if (selectedMovieIndex !== null) {
     movieSelect.selectedIndex = selectedMovieIndex;
   }
+  
 }
+
+// async function populateUI2() {
+//   const selectedSeats = JSON.parse(localStorage.getItem("selectedSeats"));
+  
+//   // Fetch seat data from the API
+//   try {
+//     const response = await fetch("/seats");
+//     const data = await response.json();
+//     const seats = data.seats;
+
+//     if (selectedSeats !== null && selectedSeats.length > 0) {
+//       // Update the class of the selected seats to 'occupied'
+//       selectedSeats.forEach(function(seatIndex) {
+//         seats[seatIndex].classList.add("occupied");
+//       });
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+
+//   const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
+
+//   if (selectedMovieIndex !== null) {
+//     movieSelect.selectedIndex = selectedMovieIndex;
+//   }
+// }
 
 // seat type select  event
 
