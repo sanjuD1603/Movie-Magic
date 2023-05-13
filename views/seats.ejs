@@ -39,9 +39,7 @@
     </ul>
 
     <div class="container">
-        <div class="movie-screen">
-            <img src='images/screen-thumb.png' alt='screen' />
-        </div>
+        
 
         <div class="row-container">
             <div class="row">
@@ -150,6 +148,8 @@ console.log(screenid);
   let noofseats = selectedSeats.length;
   let ticketprice = 650;
   let price = noofseats * ticketprice;
+  const userid = localStorage.getItem('token')
+
 
   const requestBody = { seats: selectedSeats, user_id : localStorage.getItem('token'), screenid, noofseats:noofseats, price:price};
   console.log(requestBody)
@@ -165,6 +165,7 @@ console.log(screenid);
       console.log(data);
       localStorage.removeItem("selectedSeats")
 
+      window.location.href = `/success/${userid}/${screenid}`
 
     })
     .catch((error) => {
@@ -196,6 +197,8 @@ console.log(screenid);
         seat.classList.add("occupied");
       }
     });
+
+
   })
   .catch((error) => {
     console.error(error);
